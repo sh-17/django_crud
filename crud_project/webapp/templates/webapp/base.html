@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %} <!--use to load this static file for extending our CSS files -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Crud Base Project</title>
+
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+
+<body>
+    <!-- Creating navabar -->
+
+    {% include 'webapp/navbar.html' %}
+    <div class="container">
+      <br>
+
+    <!--Notification Messages-->
+
+        {% for message in messages %}
+
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+
+                <p id="message-timer" class="alert alert-info float-center text-center message-text">
+
+                    <i class="fa-fa-check" aria-hidden="true"></i> &nbsp; {{message}}
+                </p>
+
+            {% endif %}
+        {% endfor %}
+        {% block content %}
+
+
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+    <!-- Function to hide the message after a specified time (in milliseconds)-->
+    function hideMessageAfterTimeout() {
+        var messageTimeout = document.getElementById("message-timer");
+
+        if (messageTimeout) {
+        setTimeout(function() {
+            messageTimeout.style.display = "none";
+        }, 5000); // Change 5000 to the time you want the message to be displayed in milliseconds (e.g., 5000 for 5 seconds)
+        }
+    }
+
+  // Call the function to hide the message after a timeout
+  hideMessageAfterTimeout();
+    </script>
+</body>
+
+</html>
